@@ -22,3 +22,5 @@ run
 plot -i(vo)
 .endc
 ```
+
+![Screenshot from 2022-07-11 22-24-28](https://user-images.githubusercontent.com/68816726/178287068-c0023f4b-b3eb-41bf-99a7-a9e16ae49dc5.png)
