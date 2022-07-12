@@ -53,3 +53,30 @@ plot v(2)-v(4) v(3)-v(5)
 .endc
 ```
 ![Screenshot from 2022-07-12 17-54-14](https://user-images.githubusercontent.com/68816726/178464392-0ffd5cfe-3f08-4713-b20d-06f27cb8f482.png)
+
+## 使用tsmc 180nm MOS 模擬
+```
+Output Characteristics of MOS Cascode Current Mirror Circuit
+* circuit description *
+
+.include tsmc018.lib
+
+Vdd 1 0 dc 15V
+vo 4 0 dc 5V
+Iref 1 2 dc 1mA
+* MOSFET model description
+M1 3 3 0 0 CMOSN 
+M2 5 3 0 0 CMOSN
+M3 2 2 3 0 CMOSN
+M4 4 2 5 0 CMOSN 
+* analysis requests
+.dc vo 0V 25V 10mV
+.control
+run
+* output requests
+plot -i(vo)
+plot v(2)-v(4) v(3)-v(5)
+.endc
+```
+
+![Screenshot from 2022-07-12 18-08-14](https://user-images.githubusercontent.com/68816726/178466671-5a01b6a9-c66d-4f34-bdb9-34ea80f7855d.png)
