@@ -1,5 +1,5 @@
-# SPICE-BJT
-## Current Mirror
+# SPICE-Amplifier
+## Current Mirror-BJT
 
 ![Screenshot from 2022-07-11 22-14-01](https://user-images.githubusercontent.com/68816726/178284813-dd7392ba-9e6c-4e33-947a-564474232565.png)
 
@@ -24,3 +24,32 @@ plot -i(vo)
 ```
 
 ![Screenshot from 2022-07-11 22-24-28](https://user-images.githubusercontent.com/68816726/178287068-c0023f4b-b3eb-41bf-99a7-a9e16ae49dc5.png)
+
+## Current Mirror-MOS
+
+![Screenshot from 2022-07-12 17-54-39](https://user-images.githubusercontent.com/68816726/178464270-45ecb8da-83de-4c31-8c65-b57e206b9919.png)
+
+netlist
+```
+Output Characteristics of MOS Cascode Current Mirror Circuit
+* circuit description *
+Vdd 1 0 dc 15V
+vo 4 0 dc 5V
+Iref 1 2 dc 1mA
+* MOSFET model description
+M1 3 3 0 0 nmosfet L=10u W=100u
+M2 5 3 0 0 nmosfet L=10u W=100u
+M3 2 2 3 0 nmosfet L=10u W=100u
+M4 4 2 5 0 nmosfet L=10u W=100u
+.model nmosfet nmos (kp=20u Vto=+1V lambda=0.02)
+* analysis requests
+.dc vo 0V 12V 10mV
+.control
+run
+* output requests
+plot -i(vo)
+
+plot v(2)-v(4) v(3)-v(5)
+.endc
+```
+![Screenshot from 2022-07-12 17-54-14](https://user-images.githubusercontent.com/68816726/178464392-0ffd5cfe-3f08-4713-b20d-06f27cb8f482.png)
