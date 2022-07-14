@@ -119,3 +119,34 @@ plot db(v(7))
 
 ![Screenshot from 2022-07-14 21-20-01](https://user-images.githubusercontent.com/68816726/178992342-7a6bc4da-14f3-4c6b-9822-ad38055e7190.png)
 
+#Common source
+
+![Screenshot from 2022-07-14 21-24-30](https://user-images.githubusercontent.com/68816726/178992858-b1ade4c8-00c4-4a91-a733-e9eb679a4646.png)
+
+netlist
+```
+Low-Frequency Response of Common-Source Amplifier
+* circuit description
+Vdd 4 0 +20V
+vi 1 0 ac 1 
+R 1 2 100k
+Rg1 4 3 1.4Meg
+Rg2 3 0 0.6Meg
+Rd 4 5 5k
+Rs 6 0 3.5k
+Cs 6 0 1u
+Cc1 2 3 1u
+Cc2 5 7 1u
+Rl 7 0 10k
+* model description
+M1 5 3 6 0 mosfet L=1u W=64u
+.model mosfet nmos (kp=100u Vto=1V lambda=0)
+* analysis requests
+.ac DEC 10 1Hz 10kHz
+.control
+run
+plot db(v(7))
+.endc
+```
+
+![Screenshot from 2022-07-14 21-23-38](https://user-images.githubusercontent.com/68816726/178992975-2bd1b2ad-903f-4ebc-80eb-1aac9b868e58.png)
