@@ -85,3 +85,37 @@ plot v(2)-v(4) v(3)-v(5)
 ```
 
 ![Screenshot from 2022-07-12 18-08-14](https://user-images.githubusercontent.com/68816726/178466671-5a01b6a9-c66d-4f34-bdb9-34ea80f7855d.png)
+
+
+# Common Gate
+
+![Screenshot from 2022-07-14 21-21-13](https://user-images.githubusercontent.com/68816726/178992250-51a61c60-5661-4629-897d-4843f1913391.png)
+
+netlist
+```
+High-Frequency Response of Common-Gate Amplifier
+* circuit description *
+Vdd 4 0 +20V
+Vin 1 0 dc 0 ac 1
+R 1 2 100k
+Rg1 4 3 1.4Meg
+Rg2 3 0 0.6Meg
+Rd 4 5 5k
+Rs 6 0 3.5k
+Cs 6 0 1u
+Cc1 2 3 1u
+Cc2 5 7 1u
+Rl 7 0 10k
+* model description *
+M1 5 3 6 0 mosfet L=1u W=64u
+.model mosfet nmos (kp=100u Vto=1V lambda=0 CGSO=15.625n CGDO=15.625n)
+* analysis requests *
+.ac dec 100 10kHz 1GHz
+.control
+run
+plot db(v(7))
+.endc
+```
+
+![Screenshot from 2022-07-14 21-20-01](https://user-images.githubusercontent.com/68816726/178992342-7a6bc4da-14f3-4c6b-9822-ad38055e7190.png)
+
